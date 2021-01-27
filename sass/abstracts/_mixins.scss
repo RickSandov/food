@@ -47,3 +47,92 @@
         ; //1800px
     }
 }
+
+@mixin animation($duration, $name, $delay) {
+    &.aos-animate {
+        opacity: 1;
+        animation: $name $duration ease-in-out $delay;
+        backface-visibility: hidden;
+        animation-fill-mode: backwards;
+    }
+}
+
+@mixin shadow {
+    box-shadow: 3px 3px 5px $color-shadow;
+}
+
+@mixin shadow-nav {
+    box-shadow: 2px 2px 5px $color-shadow;
+}
+
+@mixin navigation {
+    padding: 3rem 0;
+    margin: 0 auto;
+    width: 100%;
+    // max-width: 90%;
+    display: flex;
+    justify-content: space-between;
+    // margin-top: 2rem;
+    transition: .2s all ease-in-out;
+
+    @include respond(tab-port) {
+        width: 90%;
+    }
+
+    li {
+        
+
+        a {
+
+
+            &:link,
+            &:visited {
+                text-decoration: none;
+                text-transform: capitalize;
+
+                padding: .5rem 2rem;
+                margin: 0 2rem;
+
+                color: $color-text;
+                font-size: 2rem;
+                transition: all .5s;
+                // padding: .5rem 3rem;
+                // margin: 0 2rem;
+
+                @include respond(phone) {
+                    font-size: 3rem;
+                }
+
+                @include respond(tab-port) {
+                    color: white !important;
+                }
+
+            }
+
+            &:hover {
+                @include respond(from-tab-land) {
+                    @include shadow;
+                }
+
+                background-color: $color-primary;
+                border-radius: 5rem;
+                color: white;
+
+                &::after {
+                    opacity: 0;
+                }
+            }
+
+        }
+
+        @include respond(tab-port) {
+
+            & .active,
+            &:hover {
+                background-color: $color-primary !important;
+                @include shadow;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,112 @@
+@keyframes moveInLeft {
+    0% {
+        opacity: 0%;
+        transform: translateX(-10rem);
+    }
+
+    60% {
+        transform: translateX(1rem);
+    }
+
+    80% {
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0%;
+        transform: translateX(10rem);
+    }
+
+    60% {
+        transform: translateX(-1rem);
+    }
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes popUp {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+
+    50% {
+        transform: scale(2);
+    }
+
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+[data-aos="moveInLeft"] {
+    opacity: 0;
+    @include animation(.8s, moveInLeft, 1s);
+    // delay 1.8s
+}
+
+[data-aos="moveInRight"] {
+    opacity: 0;
+    @include animation(.8s, moveInRight, 1s);
+    // delay 1.2s
+}
+
+[data-aos="moveInBottom"] {
+    opacity: 0;
+    @include animation(.8s, moveInBottom, 1s);
+    // delay 1.5s
+}
+
+[data-aos="popUp"] {
+    opacity: 0;
+    @include animation(.8s, popUp, 1s);
+    // delay .3s
+}
+
+[data-aos="appear"] {
+    opacity: 0;
+    @include animation(.8s, appear, 1s);
+    // delay 1.2s
+}
