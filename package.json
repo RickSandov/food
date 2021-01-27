@@ -1,0 +1,15 @@
+{
+  "name": "carpinteria",
+  "version": "1.0.0",
+  "description": "\"Ecommerce para carpintería\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass": "node-sass sass/main.scss css/style.min.css -w --output-style compressed"
+  },
+  "author": "Ricardo Sandoval",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  }
+}
