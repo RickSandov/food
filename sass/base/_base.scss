@@ -20,9 +20,137 @@ html {
     @include respond(big-desk){
         font-size: 75%; // 1rem == 12px, 12/16
     }
+
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     color: $color-text;
+    line-height: 1.2;
+    background-color: #fff;
+}
+
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
+
+h1 {
+    font-size: 80px;
+}
+
+
+h2 {
+    font-size: 70px;
+}
+
+
+h3 {
+    font-size: 30px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+p {
+    font-size: 16px;
+}
+
+
+@include respond(phone){
+
+    h1 {
+        font-size: 36px;
+    }
+    
+    
+    h2 {
+        font-size: 25px;
+    }
+    
+    
+    h3 {
+        font-size: 30px;
+    }
+
+}
+
+
+span {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: $color-text-light;
+    
+}
+
+
+.btn, button {
+    text-decoration: none;
+    color: white;
+    border-radius: 10rem;
+    padding: 15px 33px;
+    transition: .3s all linear;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+
+    & span {
+        font-size: 13px;
+        color: white;
+        font-weight: 800;
+    }
+
+    &:hover {
+        background-color: white;
+        @include shadow-light;
+    }
+
+    &-primary {
+        background-color: $color-primary;
+
+        &:hover {
+            & span {
+                color: $color-primary !important;
+            }
+        }
+    }
+
+    &-secondary {
+        background-color: #fff;
+        
+        
+        & span {
+            color: rgb(0, 43, 161);
+        }
+    }
+
+    &-success {
+        background-color: $color-success;
+
+        &:hover {
+            & span {
+                color: $color-success !important;
+            }
+        }
+    }
+
+}
+
+.sep {
+    height: 7px;
+    width: 50px;
+    background-color: $color-primary;
+    margin-bottom: 3rem;
+}
+
+a {
+    text-decoration: none;
+    color: $color-text;
+    font-size: 16px;
 }

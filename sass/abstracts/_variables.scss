@@ -1,19 +1,25 @@
 
 
+
 $color-text: #2E3238;
+$color-text-light: #727272;
 
-$color-primary: blue;
-$color-primary-dark: darken($color-primary, 20);
-$color-primary-light: lighten($color-primary, 20);
+$color-primary: #c48900;
+$color-primary-dark: darken($color-primary, 15);
+$color-primary-light: #ffd026;
 
-$color-shadow: rgba(#2E3238, .2);
+$color-secondary: #2E3238;
+
+$color-shadow: rgba(0, 0, 0, 0.3);
+$color-shadow-light: rgba(#2E3238, .2);
 
 
 $color-btn: white;
 $color-btn-secondary: #2E3238;
 
-$color-success: green;
+$color-success: #25d366;
 $color-danger: red;
 $color-warning: orange;
+
 
 
