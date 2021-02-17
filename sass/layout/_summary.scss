@@ -1,0 +1,107 @@
+.summary {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // transition: .2s all ease-in-out;
+    transition: .2s all .2s ease-in-out ;
+    position: fixed;
+    overflow-y: auto;
+    width: 100%;
+    bottom: 63px;
+    padding: 2rem 0 0 0;
+    // background-color: $color-bc;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+  
+
+    & h2 {
+        font-size: 25px;
+        // position: fixed;
+        color: white;
+    }
+
+    &__title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // background-color: $color-bc;
+    }
+
+    & a {
+        margin: 2rem 0;
+    }
+
+    &__dropdown {
+        width: 100%;
+        padding: 0 2rem;
+        transition: .3s all ease-in-out  !important;
+        height: 0;
+        visibility: hidden;
+
+        & p {
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid white;
+            font-weight: 800;
+            font-size: 20px;
+            position: relative;
+            transition: .3s all ease-in-out;
+            display: none;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            & span {
+                font-weight: 400;
+                font-size: 15px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 40%;
+            }
+
+            & u {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                font-weight: 200;
+                text-decoration: none;
+            }
+
+            @include respond(from-tab-land) {
+                justify-content: space-around;
+            }
+        }
+    }
+
+}
+
+.dropdown {
+    background-color: $color-bc;
+    color: white;
+    transition: .2s all ease-in-out;
+
+    & a {
+        color: white;
+    }
+
+    & .summary__dropdown {
+        height: 30vh;
+        visibility: visible;
+
+        & p {
+            display: flex;
+        }
+    }
+}

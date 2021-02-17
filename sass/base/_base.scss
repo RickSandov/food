@@ -24,28 +24,32 @@ html {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: $color-text;
-    line-height: 1.2;
-    background-color: #fff;
+    line-height: 1;
+    background-color: $color-primary;
+    // padding: 0 3rem;
+//     background-image: url('../images/background.svg');
+//     background: rgb(2,0,36);
+// background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 }
 
 html,body
 {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden; 
+    // width: 100%;
+    // height: 100%;
+    // margin: 0px;
+    // padding: 0px;
+    // overflow-x: hidden; 
 }
 
 h1 {
-    font-size: 80px;
+    font-size: 40px;
 }
 
 
 h2 {
-    font-size: 70px;
+    font-size: 30px;
 }
 
 
@@ -70,7 +74,7 @@ p {
     
     
     h2 {
-        font-size: 25px;
+        font-size: 30px;
     }
     
     
@@ -80,13 +84,18 @@ p {
 
 }
 
+img {
+    max-width: 100%;
+}
+
 
 span {
     font-size: 16px;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: $color-text-light;
-    
+    // text-transform: uppercase;
+    font-weight: 200;
+    // color: $color-text-dark;
+    display: block;
+    line-height: 1;
 }
 
 
@@ -98,7 +107,7 @@ span {
     transition: .3s all linear;
     border: none;
     outline: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Raleway', sans-serif;
 
     & span {
         font-size: 13px;
@@ -112,12 +121,10 @@ span {
     }
 
     &-primary {
-        background-color: $color-primary;
+        background-color: $color-secondary;
 
         &:hover {
-            & span {
-                color: $color-primary !important;
-            }
+             color: $color-secondary !important; 
         }
     }
 
@@ -154,3 +161,34 @@ a {
     color: $color-text;
     font-size: 16px;
 }
+
+
+/* size */
+::-webkit-scrollbar {
+    height: 4px;
+
+    @include respond(tab-port){
+      display: none;
+    }
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $color-primary-dark; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: white; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+  @include respond(tab-port){
+
+  }

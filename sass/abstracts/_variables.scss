@@ -1,14 +1,16 @@
 
 
 
-$color-text: #2E3238;
-$color-text-light: #727272;
+$color-text: white;
+$color-text-dark: #d4d4d4;
 
-$color-primary: #c48900;
+$color-bc: #3e3e3e;
+
+$color-primary: #2f81c4;
 $color-primary-dark: darken($color-primary, 15);
 $color-primary-light: #ffd026;
 
-$color-secondary: #2E3238;
+$color-secondary: tomato;
 
 $color-shadow: rgba(0, 0, 0, 0.3);
 $color-shadow-light: rgba(#2E3238, .2);

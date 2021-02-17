@@ -1,28 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carpintería</title>
+    <title>Food</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.min.css">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
+
 <body>
 
-    <nav class="nav" id="navbar">
-        <a href="index.html" class="logo"><img src="assets/images/logo.png" alt=""></a>
-        <input type="checkbox" id="check">
-        <label for="check" data-aos="popUp" class="nav-check"><i class="fas fa-bars"></i></label>
-        <ul>
-            <li class="active"><a href="index.html">Inicio</a></li>
-            <li><a href="proyectos.html">Proyectos</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
+    <!-- <h1 data-aos-once="true" data-aos="appear">Animated Heading</h1> -->
+
+    <nav class="nav">
+        <img src="images/logo.png" alt="Maxi-Pollo">
+        <div class="nav__options">
+            <a class="active" href="#pollos">Pollos</a>
+            <a href="#comidas">Comidas</a>
+            <a href="#extras">Extras</a>
+        </div>
     </nav>
 
-    <h1 data-aos-once="true" data-aos="appear">Animated Heading</h1>
-    
+    <div class="food" id="pollos">
+        <div class="food__card card">
+            <div class="description">
+                <h2>2 Pollos</h2>
+                <span>Rostizado y bañado en salsa</span>
+            </div>
+            <img src="images/chicken.png" alt="pollo">
+            <div class="resume">
+                <p><span>Precio:</span>$200</p>
+                <a class="btn btn-primary" href="#">Añadir</a>
+            </div>
+        </div>
+        <div class="food__card card">
+            <div class="description">
+                <h2>2 Pollos</h2>
+                <span>Rostizado y bañado en salsa</span>
+            </div>
+            <img src="images/burrito.png" alt="pollo">
+            <div class="resume">
+                <p><span>Precio:</span>$200</p>
+                <a class="btn btn-primary" href="#">Añadir</a>
+            </div>
+        </div>
+        <div class="food__card card">
+            <div class="description">
+                <h2>2 Pollos</h2>
+                <span>Rostizado y bañado en salsa</span>
+            </div>
+            <img src="images/burger.png" alt="pollo">
+            <div class="resume">
+                <p><span>Precio:</span>$200</p>
+                <a class="btn btn-primary" href="#">Añadir</a>
+            </div>
+        </div>
+        <div class="food__card card">
+            <div class="description">
+                <h2>2 Pollos</h2>
+                <span>Rostizado y bañado en salsa</span>
+            </div>
+            <img src="images/chicken.png" alt="pollo">
+            <div class="resume">
+                <p><span>Precio:</span>$200</p>
+                <a class="btn btn-primary" href="#">Añadir</a>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="summary" id="summary">
+        <div class="summary__title">
+            <h2>Resumen del pedido</h2>
+            <a href="more" id="btn-dropdown">▼</a>
+        </div>
+        <div class="summary__dropdown">
+            <p><span>2 Pollos</span><u>x2</u>$400</p>
+            <p><span>Refresco 1.5L</span><u>x2</u>$80</p>
+        </div>
+    </div>
+
+    <div class="order-resume">
+        <div class="order-resume__price">
+            <p><span>Total:</span>$400</p>
+        </div>
+        <a href="#" class="btn btn-success">
+            Terminar pedido
+        </a>
+    </div>
+
     <script src="js/index.js"></script>
 </body>
+
 </html>

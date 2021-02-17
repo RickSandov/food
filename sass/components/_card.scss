@@ -1,0 +1,31 @@
+.card {
+    background-color: $color-bc;
+    padding: 3rem;
+    max-width: 70vw;
+    width: 450px;
+    height: 400px;
+    max-height: 90vh;
+    border-radius: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    & img {
+        align-self: center;
+        // height: 60%;
+        width: 90%;
+    }
+
+    @include respond(from-tab-land){
+        
+        height: 400px;
+
+        & img {
+            width: 80%;
+            width: 60%;
+        }
+    }
+
+
+    
+}

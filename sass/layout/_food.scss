@@ -1,0 +1,51 @@
+.food {
+    // background-color: red;
+    margin-top: 3rem;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow-x: auto;
+    
+    height: 450px;
+    // padding: 0 1rem;
+    // width: auto;
+    width: 100%;
+    // margin-right: 3rem;
+    padding: 0 3rem;
+
+    &__card {
+        margin-right: 3rem !important;
+
+        & .description {
+
+            & h2 {}
+
+            & span {
+                margin-top: 4px;
+            }
+
+        }
+
+        & img {}
+
+        & .resume {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            & p {
+                font-size: 35px;
+
+                & span {
+                    font-size: 16px;
+                    margin-bottom: 4px;
+                }
+            }
+
+            & a {
+                padding: 1.8rem 2.3rem;
+            }
+        }
+    }
+}
