@@ -120,11 +120,16 @@ span {
         @include shadow-light;
     }
 
-    &-primary {
-        background-color: $color-secondary;
+    &-primary, &-primary:visited {
+        background-color: $color-success;
+        color: white;
+        border: none;
 
         &:hover {
-             color: $color-secondary !important; 
+            @include respond(from-tab-land){
+                color: $color-success !important;
+                background-color: white;
+            } 
         }
     }
 

@@ -1,5 +1,7 @@
 .card {
+    // background-color: $color-bc;
     background-color: $color-bc;
+    // background-color: red;
     padding: 3rem;
     max-width: 70vw;
     width: 450px;
@@ -10,10 +12,12 @@
     justify-content: space-between;
     flex-direction: column;
 
+    @include animate(.6s, appear, 0s);
+
     & img {
         align-self: center;
-        // height: 60%;
-        width: 90%;
+        max-height: 90%;
+        // width: 70%;
     }
 
     @include respond(from-tab-land){
@@ -21,11 +25,9 @@
         height: 400px;
 
         & img {
-            width: 80%;
-            width: 60%;
+            // width: 80%;
+            // width: 70%;
         }
     }
-
-
     
 }

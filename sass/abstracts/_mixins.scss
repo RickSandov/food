@@ -1,10 +1,17 @@
 @mixin respond($breakpoint) {
+    @if $breakpoint==phone-s {
+        @media (max-width: 320px) {
+            @content
+        }
+
+        ; // 320px
+    }
     @if $breakpoint==phone {
         @media (max-width: 37.5em) {
             @content
         }
 
-        ; // 600px
+        ; // 320px
     }
 
     @if $breakpoint==tab-port {
@@ -55,6 +62,12 @@
         backface-visibility: hidden;
         animation-fill-mode: backwards;
     }
+}
+
+@mixin animate($duration, $name, $delay) {
+        animation: $name $duration ease-in-out $delay;
+        backface-visibility: hidden;
+        animation-fill-mode: backwards;
 }
 
 @mixin shadow {

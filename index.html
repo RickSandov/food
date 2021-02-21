@@ -17,19 +17,21 @@
     <nav class="nav">
         <img src="images/logo.png" alt="Maxi-Pollo">
         <div class="nav__options">
-            <a class="active" href="#pollos">Pollos</a>
-            <a href="#comidas">Comidas</a>
-            <a href="#extras">Extras</a>
+            <a id="pollos" class="active" href="#pollos">Pollos</a>
+            <a id="comidas" href="#comidas">Comidas</a>
+            <a id="extras" href="#extras">Extras</a>
         </div>
     </nav>
 
-    <div class="food" id="pollos">
+    <div class="food" id="showroom">
         <div class="food__card card">
             <div class="description">
                 <h2>2 Pollos</h2>
                 <span>Rostizado y bañado en salsa</span>
             </div>
-            <img src="images/chicken.png" alt="pollo">
+            <div class="image">
+                <img src="images/chicken.png" alt="pollo">
+            </div>
             <div class="resume">
                 <p><span>Precio:</span>$200</p>
                 <a class="btn btn-primary" href="#">Añadir</a>
@@ -40,7 +42,9 @@
                 <h2>2 Pollos</h2>
                 <span>Rostizado y bañado en salsa</span>
             </div>
-            <img src="images/burrito.png" alt="pollo">
+            <div class="image">
+                <img src="images/burrito.png" alt="pollo">
+            </div>
             <div class="resume">
                 <p><span>Precio:</span>$200</p>
                 <a class="btn btn-primary" href="#">Añadir</a>
@@ -51,7 +55,9 @@
                 <h2>2 Pollos</h2>
                 <span>Rostizado y bañado en salsa</span>
             </div>
-            <img src="images/burger.png" alt="pollo">
+            <div class="image">
+                <img src="images/burger.png" alt="pollo">
+            </div>
             <div class="resume">
                 <p><span>Precio:</span>$200</p>
                 <a class="btn btn-primary" href="#">Añadir</a>
@@ -62,7 +68,61 @@
                 <h2>2 Pollos</h2>
                 <span>Rostizado y bañado en salsa</span>
             </div>
-            <img src="images/chicken.png" alt="pollo">
+            <div class="image">
+                <img src="images/chicken.png" alt="pollo">
+            </div>
+            <div class="resume">
+                <p><span>Precio:</span>$200</p>
+                <a class="btn btn-primary" href="#">Añadir</a>
+            </div>
+        </div>
+        <div class="food__card card">
+            <div class="description">
+                <h2>2 Pollos</h2>
+                <span>Rostizado y bañado en salsa</span>
+            </div>
+            <div class="image">
+                <img src="images/chicken.png" alt="pollo">
+            </div>
+            <div class="resume">
+                <p><span>Precio:</span>$200</p>
+                <a class="btn btn-primary" href="#">Añadir</a>
+            </div>
+        </div>
+        <div class="food__card card">
+            <div class="description">
+                <h2>2 Pollos</h2>
+                <span>Rostizado y bañado en salsa</span>
+            </div>
+            <div class="image">
+                <img src="images/chicken.png" alt="pollo">
+            </div>
+            <div class="resume">
+                <p><span>Precio:</span>$200</p>
+                <a class="btn btn-primary" href="#">Añadir</a>
+            </div>
+        </div>
+        <div class="food__card card">
+            <div class="description">
+                <h2>2 Pollos</h2>
+                <span>Rostizado y bañado en salsa</span>
+            </div>
+            <div class="image">
+                <img src="images/chicken.png" alt="pollo">
+            </div>
+            <div class="resume">
+                <p><span>Precio:</span>$200</p>
+                <a class="btn btn-primary" href="#">Añadir</a>
+            </div>
+        </div>
+        <div class="food__card card">
+            <div class="description">
+                <h2>2 Pollos</h2>
+                <span>Rostizado y bañado en salsa</span>
+            </div>
+            <div class="image">
+                <img src="images/chicken.png" alt="pollo">
+            </div>
             <div class="resume">
                 <p><span>Precio:</span>$200</p>
                 <a class="btn btn-primary" href="#">Añadir</a>
@@ -74,17 +134,16 @@
     <div class="summary" id="summary">
         <div class="summary__title">
             <h2>Resumen del pedido</h2>
-            <a href="more" id="btn-dropdown">▼</a>
+            <a href="more" id="btn-dropdown">▲</a>
         </div>
-        <div class="summary__dropdown">
-            <p><span>2 Pollos</span><u>x2</u>$400</p>
-            <p><span>Refresco 1.5L</span><u>x2</u>$80</p>
+        <div class="summary__dropdown" id="dropdown">
+
         </div>
     </div>
 
     <div class="order-resume">
         <div class="order-resume__price">
-            <p><span>Total:</span>$400</p>
+            <p id="total" ><span>Total: </span>$0</p>
         </div>
         <a href="#" class="btn btn-success">
             Terminar pedido

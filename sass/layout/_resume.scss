@@ -7,7 +7,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 1.5rem;
-    background-color: white;
+    // background-color: white;
+    background-color: $color-bc;
     
     height: 63px;
 
@@ -15,7 +16,7 @@
         order: 2;
         & p {
             color: $color-bc;
-            // color: white;
+            color: white;
             font-size: 35px;
             // font-weight: 800;
             & span {
@@ -30,5 +31,28 @@
 
     @include respond(from-tab-land){
         justify-content: space-evenly;
+    }
+
+    @include respond(phone-s){
+        // flex-direction: column;
+        &__price {
+            order: 2;
+            & p {
+                color: $color-bc;
+                // color: white;
+                font-size: 30px;
+                // font-weight: 800;
+                & span {
+                    font-size: 16px;
+                    font-weight: 400;
+                    margin: 0;
+                }
+            }
+        }
+
+        & a {
+            font-size: 15px;
+            padding: 1rem;
+        }
     }
 }
