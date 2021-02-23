@@ -6,6 +6,13 @@
     align-items: center;
     justify-content: space-between;
 
+    @include respond(phone){
+        flex-direction: column;
+        &__options {
+            margin-top: 3rem;
+        }
+    }
+
     @include respond(from-tab-land){
         padding: 2rem 8rem;
     }

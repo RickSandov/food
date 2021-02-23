@@ -35,6 +35,14 @@
         // background-color: $color-bc;
         padding: 1rem 0;
         color: $color-bc;
+
+        @include respond(phone){
+            font-size: 15px;
+            & h2 {
+                font-size: 15px;
+                cursor: pointer;
+            }
+        }
     }
 
     & a {
@@ -86,9 +94,11 @@
 
             @include respond(from-tab-land) {
                 justify-content: space-around;
+                
             }
         }
     }
+
 
 }
 
