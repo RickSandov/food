@@ -4,8 +4,9 @@
 // INTERACTIONS
 
 let summary = document.querySelector("#summary");
+let summaryTitle = document.querySelector(".summary__title");
 
-summary.addEventListener("click", (e) => {
+summaryTitle.addEventListener("click", (e) => {
   e.preventDefault();
   summary.classList.contains("dropdown")
     ? summary.classList.remove("dropdown")
@@ -139,7 +140,7 @@ function addSummaryItem(product) {
   // item.innerHTML = `
   //   <span>${name}</span><u>x${quantity}</u>$${price}
   // `;
-  console.log(product);
+  // console.log(product);
 
   if (product.quantity > 1) {
     dataSummaryItems.forEach((e) => {
@@ -328,4 +329,3 @@ function createSnackbar(name) {
 fillArrays();
 loadEventListeners();
 
-console.log(products);

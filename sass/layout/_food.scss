@@ -3,22 +3,20 @@
     margin-top: 3rem;
 
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    overflow-x: scroll;
-    justify-content: flex-start;
-    align-items: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
     
     height: 450px;
     // padding: 0 1rem;
     // width: auto;
-    width: 100vw;
-    // margin-right: 3rem;
+    // width: 100vw;
     padding: 0 3rem;
 
     &__card {
         margin-right: 3rem !important;
         align-self: flex-start;
+        flex: 0 0 auto;
 
         & .description {
 
@@ -114,4 +112,11 @@
             margin: 0;
         }
     }
+}
+
+
+.sep {
+    width: 3rem;
+    background-color: red;
+    height: 1px;
 }

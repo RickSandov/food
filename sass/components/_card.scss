@@ -11,6 +11,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    flex: 0 0 auto;
 
     @include animate(.6s, appear, 0s);
 
