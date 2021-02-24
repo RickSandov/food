@@ -7,8 +7,8 @@
     transform: translate(-50%, -50%);
     background-color: $color-secondary;
     border-radius: .8rem;
-    animation: 3s fadeOut;
-    transition: all .4s;
+    animation: 3.8s fadeOut;
+    transition: .4s all ease-in;
     opacity: 0;
 
     & p {
