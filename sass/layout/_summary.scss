@@ -56,7 +56,8 @@
         padding: 0 2rem;
         transition: .3s all ease-in-out  !important;
         height: 0;
-        visibility: hidden;
+        // visibility: hidden;
+        overflow-y: scroll;
 
         & p {
             
