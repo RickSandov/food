@@ -27,6 +27,7 @@ let navBar = document.querySelector("nav.nav");
 // Containers
 const showroom = document.querySelector("#showroom");
 const dropdown = document.querySelector("#dropdown");
+const snackbar = document.querySelector('#snackbar');
 
 // Arrays
 
@@ -266,6 +267,7 @@ function addItem(e) {
 
     total += itemPrice;
     updateTotal();
+    createSnackbar(itemSchema.name);
   }
 }
 
@@ -288,6 +290,20 @@ function loadEventListeners() {
   });
 
   showroom.addEventListener("click", addItem);
+}
+
+function createSnackbar(name) {
+  clearHTML(snackbar);
+
+  const snack = document.createElement('div');
+  snack.classList.add('snackbar');
+
+
+  snack.innerHTML = `
+    <p>${name} al carrito</p>
+  `;
+
+  snackbar.appendChild(snack);
 }
 
 // FUNCTIONS />

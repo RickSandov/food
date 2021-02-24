@@ -1,0 +1,28 @@
+
+
+.snackbar {
+    position: fixed;
+    bottom: 130px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color-secondary;
+    border-radius: .8rem;
+    animation: 3s fadeOut;
+    transition: all .4s;
+    opacity: 0;
+
+    & p {
+        padding: 15px 20px;
+        font-weight: 800;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        bottom: 160px;
+        opacity: 0;
+    }
+}
