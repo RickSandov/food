@@ -125,7 +125,9 @@ span {
         color: white;
         border: none;
 
-        &:hover {
+        &:hover, &:active {
+            background-color: white;
+            color: $color-success !important;
             @include respond(from-tab-land){
                 color: $color-success !important;
                 background-color: white;
@@ -145,7 +147,9 @@ span {
     &-success {
         background-color: $color-success;
 
-        &:hover {
+        &:hover, &:active {
+            background-color: white;
+            color: $color-success !important;
             & span {
                 color: $color-success !important;
             }
