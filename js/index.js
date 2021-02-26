@@ -3,14 +3,25 @@
 
 // INTERACTIONS
 
-let summary = document.querySelector("#summary");
-let summaryTitle = document.querySelector(".summary__title");
+const summary = document.querySelector("#summary");
+const summaryTitle = document.querySelector(".summary__title");
+const scrim = document.querySelector(".scrim");
 
 summaryTitle.addEventListener("click", (e) => {
   e.preventDefault();
-  summary.classList.contains("dropdown")
-    ? summary.classList.remove("dropdown")
-    : summary.classList.add("dropdown");
+  if (summary.classList.contains("dropdown")) {
+    summary.classList.remove("dropdown");
+    scrim.style.display = "none";
+  } else {
+    summary.classList.add("dropdown");
+    scrim.style.display = "block";
+  }
+});
+
+scrim.addEventListener("click", (e) => {
+  e.preventDefault();
+  summary.classList.remove("dropdown");
+  scrim.style.display = "none";
 });
 
 // INTERACTIONS />
@@ -20,18 +31,27 @@ const totalElement = document.querySelector("#total");
 let total = 0;
 
 // Showroom groups
-let navPollos = document.querySelector("#pollos");
-let navComidas = document.querySelector("#comidas");
-let navExtras = document.querySelector("#extras");
-let navBar = document.querySelector("nav.nav");
+const navPollos = document.querySelector("#pollos");
+const navComidas = document.querySelector("#comidas");
+const navExtras = document.querySelector("#extras");
+const navBar = document.querySelector("nav.nav");
 
 // Containers
 const showroom = document.querySelector("#showroom");
 const dropdown = document.querySelector("#dropdown");
-const snackbar = document.querySelector('#snackbar');
+const snackbar = document.querySelector("#snackbar");
+
+// Modal info\
+const modal = document.querySelector("#modal");
+const modalInfo = document.querySelector(".modal__info");
+const modalSelect = document.querySelector("#modalSelect");
+const modalTotal = document.querySelector("#modal-total");
+const modalPrice = document.querySelector("#modal-price");
+const modalExit = document.querySelector(".modal__exit");
+const modalDelete = document.querySelector(".delete");
+const ok = document.querySelector(".ok");
 
 // Arrays
-
 // const showroomItems = [];
 const pollos = [];
 const comidas = [];
@@ -39,8 +59,9 @@ const extras = [];
 const dataPollos = [];
 const dataComidas = [];
 const dataExtras = [];
-const dataSummaryItems = [];
-const summaryItems = []
+let dataSummaryItems = [];
+const summaryItems = [];
+let itemsAdded;
 
 // fetch
 const products = [
@@ -123,9 +144,13 @@ function createAddCard(product, arr) {
 
 function createAddSummary(item) {
   const itemElement = document.createElement("p");
+  const itemID = document.createAttribute("data-id");
+  itemID.value = item.id;
+  itemElement.setAttributeNode(itemID);
+  itemElement.classList.add("dropdown-item");
 
   itemElement.innerHTML = `
-  <span>${item.name}</span><u>x${item.quantity}</u>$${(item.price)*(item.quantity)}
+  <span>${item.name}</span><u>${item.quantity}</u>$${item.price * item.quantity}
 `;
 
   summaryItems.push(itemElement);
@@ -133,16 +158,7 @@ function createAddSummary(item) {
 
 // to create a resume item and add to summary container
 function addSummaryItem(product) {
-  // const item = document.createElement("p");
-
-  // price *= product.quantity;
-
-  // item.innerHTML = `
-  //   <span>${name}</span><u>x${quantity}</u>$${price}
-  // `;
-  // console.log(product);
-
-  if (product.quantity > 1) {
+  if (dataSummaryItems.find(i => i.id == product.id)) {
     dataSummaryItems.forEach((e) => {
       product.id == e.id ? e.quantity++ : null;
     });
@@ -155,13 +171,14 @@ function addSummaryItem(product) {
 
 function fillSummary() {
   // summaryItems = [];
-  while(summaryItems[0]){
+  while (summaryItems[0]) {
     summaryItems.pop();
   }
-  
+
+  dataSummaryItems = dataSummaryItems.filter((item) => item.quantity >= 1);
+
   dataSummaryItems.forEach((item) => {
-    // dropdown.appendChild(item);
-    createAddSummary(item);
+    item.quantity > 0 ? createAddSummary(item) : null;
   });
 
   loadDropdown(summaryItems);
@@ -239,10 +256,11 @@ function addItem(e) {
     let itemPrice;
 
     const itemSchema = {
-      name: '',
+      name: "",
+      description: "",
       price: 0,
       quantity: 0,
-      id: ''
+      id: "",
     };
 
     itemParent.classList.contains("pollo")
@@ -251,24 +269,33 @@ function addItem(e) {
       ? (targetArr = [...dataExtras])
       : (targetArr = [...dataComidas]);
 
-    targetArr.forEach((e) => {
-      // itemID == e._id ? itemPrice = e.price : null;
-      if (itemID == e._id) {
-        itemPrice = e.price;
-        itemSchema.price = e.price;
-        itemSchema.name = e.name;
-        itemSchema.quantity = e.quantity;
-        itemSchema.id = e._id;
-        // addSummaryItem(e.name, e.price, e.quantity);
+      let currentQuantity;
 
-        e.quantity++;
-        addSummaryItem(itemSchema);
-      }
-    });
+      currentQuantity = dataSummaryItems.find(i => i.id == itemID) ? currentQuantity = dataSummaryItems.find(i => i.id == itemID).quantity : 0;
 
-    total += itemPrice;
-    updateTotal();
-    createSnackbar(itemSchema.name);
+    if (currentQuantity >= 5){
+      createSnackbarError();
+    } else {
+      targetArr.forEach((e) => {
+        // itemID == e._id ? itemPrice = e.price : null;
+          if (itemID == e._id) {
+            itemPrice = e.price;
+            itemSchema.price = e.price;
+            itemSchema.name = e.name;
+            itemSchema.description = e.description;
+            itemSchema.quantity += 1;
+            itemSchema.id = e._id;
+            // addSummaryItem(e.name, e.price, e.quantity);
+  
+            addSummaryItem(itemSchema);
+            total += itemPrice;
+            updateTotal();
+            createSnackbar(itemSchema.name);
+          }
+          // console.log(e);
+        } 
+      )
+    }
   }
 }
 
@@ -291,35 +318,106 @@ function loadEventListeners() {
   });
 
   showroom.addEventListener("click", addItem);
+  dropdown.addEventListener("click", createModal);
 }
 
 function createSnackbar(name) {
   clearHTML(snackbar);
 
-  const snack = document.createElement('div');
-  snack.classList.add('snackbar');
-
+  const snack = document.createElement("div");
+  snack.classList.add("snackbar");
 
   snack.innerHTML = `
     <p>${name} al carrito</p>
   `;
 
   snackbar.appendChild(snack);
+};
+
+function createSnackbarError() {
+  clearHTML(snackbar);
+
+  const snack = document.createElement("div");
+  snack.classList.add('snackbar', 'snackbar-error');
+
+  snack.innerHTML = `
+    <p>Límite de 5 por producto</p>
+  `;
+
+  snackbar.appendChild(snack);
+};
+
+// Create modal with the content of the clicked item
+function createModal(e) {
+  if (
+    e.target.hasAttribute("data-id") ||
+    e.target.parentElement.hasAttribute("data-id")
+  ) {
+    const itemSelected = e.target.parentElement.hasAttribute("data-id")
+      ? e.target.parentElement
+      : e.target;
+
+    dataSummaryItems.forEach((e) => {
+      if (itemSelected.getAttribute("data-id") == e.id) {
+        modalInfo.innerHTML = `\
+        <h3>${e.name}</h3>
+        <span>${e.description}</span>
+        `;
+        modalPrice.innerHTML = `
+        $${e.price}c/u
+        `;
+        modalSelect.value = e.quantity;
+        modalTotal.innerHTML = `
+        <span>Total:</span> $${e.price * e.quantity}
+        `;
+
+        modalSelect.addEventListener("input", () => {
+          e.quantity = modalSelect.value;
+          modalTotal.innerHTML = `
+          <span>Total:</span> $${e.price * e.quantity}
+          `;
+        });
+
+        modalDelete.addEventListener("click", () => {
+          e.quantity = 0;
+          closeModal();
+        });
+      }
+    });
+
+    modal.style.display = "flex";
+
+    modalExit.addEventListener("click", () => {
+      closeModal();
+    });
+
+    ok.addEventListener("click", () => {
+      closeModal();
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target.classList.contains("modal")) {
+        closeModal();
+      }
+    });
+  }
+}
+
+function closeModal() {
+  modal.style.display = "none";
+  fillSummary();
+  checkTotal();
+  updateTotal();
+}
+
+function checkTotal() {
+  total = 0;
+  dataSummaryItems.forEach((e) => {
+    total += e.price * e.quantity;
+  });
 }
 
 // FUNCTIONS />
-
-// CLASSES
-
-// class Product {
-//   // #price = 0;
-//   constructor(name, description, image, price) {
-//     this.name = name;
-//     this.description = description;
-//     this.image = image;
-//     this.price = price;
-//   }
-// }
 
 // CLASSES />
 
@@ -328,4 +426,3 @@ function createSnackbar(name) {
 // initializations
 fillArrays();
 loadEventListeners();
-

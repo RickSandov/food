@@ -34,7 +34,7 @@
         align-items: center;
         justify-content: center;
         // background-color: $color-bc;
-        padding: 1rem 0;
+        padding: 2rem 0 0 0;
         color: $color-bc;
 
         @include respond(phone){
@@ -53,7 +53,7 @@
 
     &__dropdown {
         width: 100%;
-        padding: 0 2rem;
+        padding: 2rem 4rem 0 4rem;
         transition: .3s all ease-in-out  !important;
         height: 0;
         // visibility: hidden;
@@ -72,13 +72,17 @@
             transition: .3s all ease-in-out;
             display: none;
 
+
             &:last-child {
                 border-bottom: none;
             }
 
+            &:first-child {
+                border-top: 1px solid white;
+            }
+
             & span {
-                font-weight: 400;
-                font-size: 15px;
+                font-size: 20px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -121,4 +125,15 @@
             display: flex;
         }
     }
+}
+
+.scrim {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background-color: rgba(black, .3);
+    display: none;
+    animation: .4s appear;
 }

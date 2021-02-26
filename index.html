@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.min.css">
 </head>
 
@@ -29,27 +29,43 @@
 
     <div id="snackbar"></div>
 
+    <div class="scrim"></div>
     <div class="summary" id="summary">
         <div class="summary__title">
             <h2>Resumen del pedido</h2>
             <a href="more" id="btn-dropdown">▲</a>
         </div>
-        <div class="summary__dropdown" id="dropdown">
-            <!-- <p><span>${item.name}</span><u>x${item.quantity}</u>$${(item.price)*(item.quantity)}</p> -->
-            <!-- <div class="item">
-                <a href="#" class="cross"></a>
-                <p><span>2 Pollos</span><u>x1</u>$200</p>
-            </div> -->
-        </div>
+        <div class="summary__dropdown" id="dropdown"></div>
     </div>
 
-    <div class="modal">
-        
+    <div class="modal" id="modal">
+        <div class="modal__content">
+            <div class="modal__info"></div>
+            <div class="modal__actions">
+                <div class="modal__price">
+                    <select name="quantity" id="modalSelect">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <p id="modal-price"></p>
+                </div>
+                <a href="#" class="delete">Borrar del carrito</a>
+            </div>
+
+            <div class="modal__final">
+                <p id="modal-total"></p>
+                <div class="ok">Ok</div>
+            </div>
+            <div class="modal__exit">&times</div>
+        </div>
     </div>
 
     <div class="order-resume">
         <div class="order-resume__price">
-            <p id="total" ><span>Total: </span>$0</p>
+            <p id="total"><span>Total: </span>$0</p>
         </div>
         <a href="#" class="btn btn-success">
             Terminar pedido

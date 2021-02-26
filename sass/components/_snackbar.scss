@@ -4,15 +4,20 @@
     bottom: 130px;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: $color-secondary;
+    background-color: $color-success;
     border-radius: .8rem;
     animation: 3.8s fadeOut;
     transition: .4s all ease-in;
     opacity: 0;
+    width: 90%;
 
     & p {
         padding: 15px 20px;
         font-weight: 800;
+    }
+
+    &-error {
+        background-color: $color-secondary;
     }
 }
 

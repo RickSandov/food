@@ -20,7 +20,9 @@
 
         & .description {
 
-            & h2 {}
+            & h2 {
+                letter-spacing: 2px;
+            }
 
             & span {
                 margin-top: 4px;
@@ -97,8 +99,9 @@
 
     @include respond(from-tab-land){
         display: grid;
-        grid-template-columns: repeat(3, 450px);
+        grid-template-columns: repeat(3, 1fr);
         height: auto;
+        max-width: 90%;
         margin-bottom: 9rem;
         align-items: center;
         justify-content: center;
@@ -112,6 +115,11 @@
             margin: 0;
         }
     }
+
+    @include respond(tab-port){
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
 
@@ -119,4 +127,10 @@
     width: 3rem;
     background-color: red;
     height: 1px;
+}
+
+#showroom {
+    @include respond(from-tab-land){
+        max-width: 90%;
+    }
 }

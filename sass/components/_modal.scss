@@ -1,0 +1,130 @@
+.modal {
+    position: fixed;
+    z-index: 101;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(black, .3);
+    display: none;
+
+    animation: .4s appear;
+
+    &__content {
+        background-color: white;
+        color: $color-bc;
+        max-width: 90%;
+        max-height: 60vh;
+        width: 600px;
+        height: 300px;
+        border-radius: .8rem;
+        @include shadow;
+        padding: 3rem 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    &__info {
+
+        // margin: 0 auto;
+        & span {
+            font-weight: 400;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__price {
+        display: flex;
+        align-items: center;
+
+        & p {
+            font-size: 2.5rem;
+            height: fit-content;
+        }
+
+        & select {
+            // border: none;
+            // width: 40px;
+            margin-right: 2rem;
+            // padding: 0 1rem;
+            background-color: white;
+            border-color: gray;
+            border-radius: 5rem;
+            outline: none;
+            padding: .5rem 1rem;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    & #modal-total {
+        & span {
+            display: inline;
+            // color: $color-text;
+            color: black;
+            font-weight: 400;
+
+        }
+
+        align-self: center;
+        font-size: 3.5rem;
+        color: $color-success;
+        font-weight: bold;
+    }
+
+    &__exit {
+        font-weight: 700;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 3rem;
+        position: absolute;
+        top: 2rem;
+        right: 2.5rem;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+
+    &__final {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        & .ok {
+            font-size: 2rem;
+            padding: 1rem 2rem;
+            color: white;
+            background-color: $color-bc;
+            border-radius: .8rem;
+            cursor: pointer;
+            transition: .3s all ease-in-out;
+
+            &:hover {
+                // color: $color-bc;
+                background-color: $color-success;
+                // @include shadow-light;
+            }
+        }
+    }
+
+}
+
+.delete {
+    color: $color-secondary;
+    // width: 100%;
+    margin-top: 2rem;
+    align-self: center;
+}
+
+.ok {
+    display: block;
+}
