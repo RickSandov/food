@@ -9,7 +9,9 @@
     animation: 3.8s fadeOut;
     transition: .4s all ease-in;
     opacity: 0;
-    width: 90%;
+    width: 600px;
+    max-width: 90%;
+    text-align: center;
 
     & p {
         padding: 15px 20px;
