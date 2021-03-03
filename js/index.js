@@ -61,7 +61,7 @@ const dataComidas = [];
 const dataExtras = [];
 let dataSummaryItems = [];
 const summaryItems = [];
-let itemsAdded;
+const sauces = [];
 
 // fetch
 const products = [
@@ -261,6 +261,7 @@ function addItem(e) {
       price: 0,
       quantity: 0,
       id: "",
+      category: ""
     };
 
     itemParent.classList.contains("pollo")
@@ -285,9 +286,11 @@ function addItem(e) {
             itemSchema.description = e.description;
             itemSchema.quantity += 1;
             itemSchema.id = e._id;
-            // addSummaryItem(e.name, e.price, e.quantity);
+            itemSchema.category = e.category;
   
             addSummaryItem(itemSchema);
+            itemSchema.category == 'pollo' ? modalSauce(itemSchema.id) : null;
+            
             total += itemPrice;
             updateTotal();
             createSnackbar(itemSchema.name);
@@ -346,6 +349,11 @@ function createSnackbarError() {
 
   snackbar.appendChild(snack);
 };
+
+// Create modal for sauces
+function modalSauce(id) {
+  console.log(id);
+}
 
 // Create modal with the content of the clicked item
 function createModal(e) {
