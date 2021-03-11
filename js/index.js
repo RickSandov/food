@@ -50,6 +50,10 @@ const modalPrice = document.querySelector("#modal-price");
 const modalExit = document.querySelector(".modal__exit");
 const modalDelete = document.querySelector(".delete");
 const ok = document.querySelector(".ok");
+const saucesShowroom = document.querySelector(".sauces");
+
+const modalSaucesBtn = document.querySelector("#modal-sauces-btn");
+const modalSauces = document.querySelector("#modal-sauces");
 
 // Arrays
 // const showroomItems = [];
@@ -61,7 +65,36 @@ const dataComidas = [];
 const dataExtras = [];
 let dataSummaryItems = [];
 const summaryItems = [];
-const sauces = [];
+
+const saucesArr = [];
+const sauceOptions = [];
+const sauces = [
+  {
+    _id: 1,
+    name: "chipotle",
+    available: true,
+  },
+  {
+    _id: 2,
+    name: "picosita",
+    available: false,
+  },
+  {
+    _id: 3,
+    name: "bbq",
+    available: true,
+  },
+  {
+    _id: 4,
+    name: "Mango Habanero",
+    available: true,
+  },
+  {
+    _id: 5,
+    name: "agridulce",
+    available: true,
+  },
+];
 
 // fetch
 const products = [
@@ -72,6 +105,7 @@ const products = [
     category: "pollo",
     image: "chicken.png",
     price: 105,
+    available: true,
   },
   {
     _id: 2,
@@ -80,6 +114,7 @@ const products = [
     category: "pollo",
     image: "chicken.png",
     price: 200,
+    available: true,
   },
   {
     _id: 3,
@@ -88,6 +123,7 @@ const products = [
     category: "extras",
     image: "burger.png",
     price: 15,
+    available: true,
   },
   {
     _id: 4,
@@ -96,6 +132,7 @@ const products = [
     category: "comidas",
     image: "burger.png",
     price: 30,
+    available: true,
   },
   {
     _id: 5,
@@ -104,6 +141,7 @@ const products = [
     category: "comidas",
     image: "burrito.png",
     price: 30,
+    available: true,
   },
   {
     _id: 6,
@@ -112,6 +150,7 @@ const products = [
     category: "extras",
     image: "chicken.png",
     price: 25,
+    available: true,
   },
 ];
 
@@ -149,16 +188,60 @@ function createAddSummary(item) {
   itemElement.setAttributeNode(itemID);
   itemElement.classList.add("dropdown-item");
 
+  if (item.sauceID) {
+    const itemSauce = document.createAttribute("sauce-id");
+    itemSauce.value = item.sauceID;
+    itemElement.setAttributeNode(itemSauce);
+  }
+
+  //   if (item.category == "pollo") {
+  //     sauces.forEach((e) => {
+  //       if (e._id == item.sauceID) {
+  // //         console.log("essss");
+  //         let sauceName = e.name;
+  //         itemElement.innerHTML = `
+  //   <span>${item.name} || ${sauceName}</span><u>${item.quantity}</u>$${
+  //           item.price * item.quantity
+  //         }
+  // `;
+  //       }
+  //     });
+  //   } else {
   itemElement.innerHTML = `
   <span>${item.name}</span><u>${item.quantity}</u>$${item.price * item.quantity}
 `;
+  // }
 
   summaryItems.push(itemElement);
 }
 
+function createAddSauce(sauce) {
+  const sauceOption = document.createElement("div");
+  sauceOption.innerHTML = `
+  <input type="radio" id="${sauce._id}" name="sauce" value="${sauce._id}">
+  <label for="${sauce._id}">
+      <div class="sauce">
+          ${sauce.name}
+      </div>
+  </label>
+  `;
+
+  sauceOptions.push(sauceOption);
+}
+
 // to create a resume item and add to summary container
 function addSummaryItem(product) {
-  if (dataSummaryItems.find(i => i.id == product.id)) {
+  console.log("product: ", product);
+  if (product.category === "pollo") {
+    if (product.quantity === 1) {
+      dataSummaryItems.push(product);
+    } else {
+      dataSummaryItems.forEach((e) => {
+        product.sauceID == e.sauceID ? e.quantity++ : null;
+        // console.log(product.sauceID, e.sauceID);
+      });
+    }
+  } else if (dataSummaryItems.find((i) => i.id == product.id)) {
     dataSummaryItems.forEach((e) => {
       product.id == e.id ? e.quantity++ : null;
     });
@@ -181,6 +264,15 @@ function fillSummary() {
     item.quantity > 0 ? createAddSummary(item) : null;
   });
 
+  // console.log(dataSummaryItems);
+
+  // if (dataSummaryItems.find((i) => i.id == itemID)) {
+  //   const quantityArr = dataSummaryItems.filter((i) => i.id == itemID);
+  //   quantityArr.forEach((e) => {
+  //     currentQuantity += e.quantity;
+  //   });
+  // }
+
   loadDropdown(summaryItems);
 }
 
@@ -189,7 +281,7 @@ function loadDropdown(arr) {
 
   arr.forEach((e) => {
     dropdown.appendChild(e);
-    // console.log("elemento agregado");
+    // // console.log("elemento agregado");
   });
 }
 
@@ -205,7 +297,14 @@ function loadShowroom(arr) {
 
   arr.forEach((e) => {
     showroom.appendChild(e);
-    // console.log("elemento agregado");
+    // // console.log("elemento agregado");
+  });
+}
+
+function loadSauces() {
+  sauceOptions.forEach((e) => {
+    saucesShowroom.appendChild(e);
+    // // console.log("elemento agregado");
   });
 }
 
@@ -219,24 +318,51 @@ function navActive(newActive) {
 
 // Fill Arrays
 function fillArrays() {
-  products.forEach((e) => {
-    // e.category === 'pollo' ? createAddCard(e, pollos) : e.category === 'comidas' ? createAddCard(e, comidas) : createAddCard(e, extras);
-
-    e.quantity = 1;
-    if (e.category === "pollo") {
-      createAddCard(e, pollos);
-      dataPollos.push(e);
-    } else if (e.category === "comidas") {
-      createAddCard(e, comidas);
-      dataComidas.push(e);
-    } else {
-      createAddCard(e, extras);
-      dataExtras.push(e);
+  sauces.forEach((e) => {
+    if (e.available) {
+      createAddSauce(e);
+      // pollo.sauceID = e._id;
+      // products.push(pollo);
     }
   });
+
+  products.forEach((e) => {
+    if (e.available) {
+      if (e.category === "pollo") {
+        createAddCard(e, pollos);
+        e.quantity = 0;
+        dataPollos.push(e);
+        sauces.forEach((s) => {
+          if (s.available) {
+            const current = { ...e };
+            current.sauceID = s._id;
+            dataPollos.push(current);
+          }
+        });
+      } else if (e.category === "comidas") {
+        createAddCard(e, comidas);
+        dataComidas.push(e);
+      } else {
+        createAddCard(e, extras);
+        dataExtras.push(e);
+      }
+    }
+  });
+
+  // sauces.forEach((e) => {
+  //   if (e.available) {
+  //     createAddSauce(e);
+  //     pollo.sauceID = e._id;
+  //     products.push(pollo);
+  //   }
+  // });
+
+  loadSauces();
   loadShowroom(pollos);
   updateTotal();
 }
+
+// Fill sauces
 
 // Update total
 function updateTotal() {
@@ -254,6 +380,7 @@ function addItem(e) {
     const itemID = item.getAttribute("data-id");
     let targetArr;
     let itemPrice;
+    let currentQuantity = 0;
 
     const itemSchema = {
       name: "",
@@ -261,7 +388,7 @@ function addItem(e) {
       price: 0,
       quantity: 0,
       id: "",
-      category: ""
+      category: "",
     };
 
     itemParent.classList.contains("pollo")
@@ -270,34 +397,41 @@ function addItem(e) {
       ? (targetArr = [...dataExtras])
       : (targetArr = [...dataComidas]);
 
-      let currentQuantity;
+    if (dataSummaryItems.find((i) => i.id == itemID)) {
+      const quantityArr = dataSummaryItems.filter((i) => i.id == itemID);
+      quantityArr.forEach((e) => {
+        currentQuantity += e.quantity;
+      });
+    }
 
-      currentQuantity = dataSummaryItems.find(i => i.id == itemID) ? currentQuantity = dataSummaryItems.find(i => i.id == itemID).quantity : 0;
-
-    if (currentQuantity >= 5){
+    if (currentQuantity >= 5) {
       createSnackbarError();
+    } else if (itemParent.classList.contains("pollo")) {
+      modalSauce(itemID);
     } else {
       targetArr.forEach((e) => {
         // itemID == e._id ? itemPrice = e.price : null;
-          if (itemID == e._id) {
-            itemPrice = e.price;
-            itemSchema.price = e.price;
-            itemSchema.name = e.name;
-            itemSchema.description = e.description;
-            itemSchema.quantity += 1;
-            itemSchema.id = e._id;
-            itemSchema.category = e.category;
-  
-            addSummaryItem(itemSchema);
-            itemSchema.category == 'pollo' ? modalSauce(itemSchema.id) : null;
-            
-            total += itemPrice;
-            updateTotal();
-            createSnackbar(itemSchema.name);
-          }
-          // console.log(e);
-        } 
-      )
+        if (itemID == e._id) {
+          itemPrice = e.price;
+          itemSchema.price = e.price;
+          itemSchema.name = e.name;
+          itemSchema.description = e.description;
+          itemSchema.quantity += 1;
+          itemSchema.id = e._id;
+          itemSchema.category = e.category;
+
+          addSummaryItem(itemSchema);
+          total += itemPrice;
+          updateTotal();
+          createSnackbar(itemSchema.name);
+
+          // addSummaryItem(itemSchema);
+          // total += itemPrice;
+          // updateTotal();
+          // createSnackbar(itemSchema.name);
+        }
+        // // console.log(e);
+      });
     }
   }
 }
@@ -321,7 +455,10 @@ function loadEventListeners() {
   });
 
   showroom.addEventListener("click", addItem);
-  dropdown.addEventListener("click", createModal);
+  dropdown.addEventListener("click", (i) => {
+    // console.log(i)
+    navBar.childNodes.length !== 5 ? null : createModal(i);
+  });
 }
 
 function createSnackbar(name) {
@@ -335,28 +472,52 @@ function createSnackbar(name) {
   `;
 
   snackbar.appendChild(snack);
-};
+}
 
-function createSnackbarError() {
+function createSnackbarError(msg = 0) {
   clearHTML(snackbar);
 
   const snack = document.createElement("div");
-  snack.classList.add('snackbar', 'snackbar-error');
+  snack.classList.add("snackbar", "snackbar-error");
 
-  snack.innerHTML = `
+  if (msg === 0) {
+    snack.innerHTML = `
     <p>Límite de 5 por producto</p>
   `;
+  } else if (msg == 1) {
+    snack.innerHTML = `
+    <p>Selecciona una salsa</p>
+  `;
+  } else {
+    snack.innerHTML = `
+    <p>No has agregado ningún producto</p>
+  `;
+  }
 
   snackbar.appendChild(snack);
-};
+}
 
 // Create modal for sauces
 function modalSauce(id) {
-  console.log(id);
+  modalSauces.style.display = "flex";
+
+  modalSaucesBtn.onclick = () => {
+    if (document.querySelector('input[name="sauce"]:checked')) {
+      // console.log(document.querySelectorAll('input[name="sauce"]:checked'));
+      const sauceSelected = document.querySelector(
+        'input[name="sauce"]:checked'
+      ).value;
+      // console.log(sauceSelected);
+      closeModalSauce(sauceSelected, id);
+    } else {
+      createSnackbarError(1);
+    }
+  };
 }
 
 // Create modal with the content of the clicked item
 function createModal(e) {
+  console.log(e.target);
   if (
     e.target.hasAttribute("data-id") ||
     e.target.parentElement.hasAttribute("data-id")
@@ -365,8 +526,12 @@ function createModal(e) {
       ? e.target.parentElement
       : e.target;
 
+    // console.log("Current item:", itemSelected);
     dataSummaryItems.forEach((e) => {
-      if (itemSelected.getAttribute("data-id") == e.id) {
+      if (
+        itemSelected.getAttribute("data-id") == e.id &&
+        itemSelected.getAttribute("sauce-id") == e.sauceID
+      ) {
         modalInfo.innerHTML = `\
         <h3>${e.name}</h3>
         <span>${e.description}</span>
@@ -375,21 +540,35 @@ function createModal(e) {
         $${e.price}c/u
         `;
         modalSelect.value = e.quantity;
+
         modalTotal.innerHTML = `
         <span>Total:</span> $${e.price * e.quantity}
         `;
 
-        modalSelect.addEventListener("input", () => {
-          e.quantity = modalSelect.value;
-          modalTotal.innerHTML = `
+        modalSelect.oninput = () => {
+          console.log(itemSelected.getAttribute("data-id"));
+          if (itemSelected.getAttribute("data-id") == e.id) {
+            e.quantity = Number(modalSelect.value);
+            modalTotal.innerHTML = `
           <span>Total:</span> $${e.price * e.quantity}
           `;
-        });
+          }
+        };
 
-        modalDelete.addEventListener("click", () => {
-          e.quantity = 0;
+        modalDelete.onclick = () => {
+          if (e.sauceID) {
+            const currentPollo = dataPollos.find(
+              (i) => i.sauceID == e.sauceID && i._id == e.id
+            );
+            if (itemSelected.getAttribute("sauce-id") == e.sauceID) {
+              currentPollo.quantity = 0;
+              e.quantity = 0;
+            }
+          } else {
+            e.quantity = 0;
+          }
           closeModal();
-        });
+        };
       }
     });
 
@@ -418,6 +597,55 @@ function closeModal() {
   updateTotal();
 }
 
+function closeModalSauce(sauceID, polloID) {
+  // // // document.querySelector('input[name="sauce"]:checked') ? console.log(document.querySelector('input[name="sauce"]:checked').value) : console.log('No hay');
+
+  if (dataPollos.find((e) => e._id == polloID && e.sauceID == sauceID)) {
+    const currentPollo = dataPollos.find(
+      (e) => e._id == polloID && e.sauceID == sauceID
+    );
+
+    // console.log(currentPollo);
+
+    const sauceName = sauces.find((s) => s._id == sauceID).name;
+    // console.log(sauceName);
+
+    currentPollo.quantity++;
+
+    // console.log(currentPollo.quantity);
+
+    const itemSchema = {
+      name: `${currentPollo.name} || ${sauceName}`,
+      description: currentPollo.description,
+      price: currentPollo.price,
+      quantity: currentPollo.quantity,
+      id: currentPollo._id,
+      category: currentPollo.category,
+      sauceID: currentPollo.sauceID,
+    };
+
+    console.log("item schema: ", itemSchema);
+    console.log("current: ", currentPollo);
+
+    modalSauces.style.display = "none";
+    // console.log(itemSchema)
+    addSummaryItem(itemSchema);
+    total += itemSchema.price;
+    updateTotal();
+    createSnackbar(itemSchema.name);
+  }
+
+  // if (document.querySelector('input[name="sauce"]:checked')) {
+  // //   console.log('pollito seleccionado jeje');
+  //   modalSauces.style.display = "none";
+  // }
+
+  // if (document.querySelector('input[name="sauce"]:checked')) {
+  //   pollo.sauceID = document.querySelector('input[name="sauce"]:checked').value;
+  //   modalSauces.style.display = "none";
+  // }
+}
+
 function checkTotal() {
   total = 0;
   dataSummaryItems.forEach((e) => {
@@ -434,3 +662,64 @@ function checkTotal() {
 // initializations
 fillArrays();
 loadEventListeners();
+
+// finish order
+const finishBtn = document.querySelector(".next");
+const foodContainer = document.querySelector(".food");
+const navOptions = document.querySelector(".nav__options");
+const form = document.querySelector(".address");
+const backBtn = document.querySelector(".back");
+
+backBtn.addEventListener("click", () => {
+  backBtn.classList.add("d-none");
+  navOptions.classList.remove("d-none");
+  foodContainer.classList.remove("d-none");
+  modalDelete.classList.remove("d-none");
+  form.classList.add("d-none");
+
+  loadShowroom(pollos);
+});
+
+finishBtn.addEventListener("click", () => {
+  if (summaryItems.length >= 1) {
+    backBtn.classList.remove("d-none");
+    backBtn.innerText = "← Regresar";
+
+    form.classList.remove("d-none");
+
+    form.innerHTML = `
+    <form action="/api/add-address" method="POST" class="form">
+
+    <h3 class="form__title">Dirección y Datos de Envío.</h3>
+
+    <div class="error-display"></div>
+    <input type="text" class="form__field" name="street" placeholder="Calle" required>
+
+    <input type="number" class="form__field" name="extnumber" placeholder="Numero Exterior" required>
+
+    <input type="number" class="form__field" name="intnumber" placeholder="Numero Interior">
+
+    <input type="text" class="form__field" name="refs" placeholder="Referencias">
+
+    <input type="text" class="form__field" name="nbhood" placeholder="Colonia" required>
+
+    <input type="number" class="form__field" name="postalcode" placeholder="Codigo Postal" required>
+
+    <input type="number" class="form__field" name="phone" placeholder="Telefono" minlength=10 maxlength=10 pattern="[0-9]{10,}" title="Numero telefonico de 10 digitos" required>
+
+    <button type="submit" class="btn btn-success">
+        <span class="text">Continuar</span>
+    </button>
+    </form>
+    `;
+
+    navOptions.classList.add("d-none");
+    foodContainer.classList.add("d-none");
+    modalDelete.classList.add("d-none");
+    clearHTML(showroom);
+
+    // document.appendChild(backBtn);
+  } else {
+    createSnackbarError(2);
+  }
+});

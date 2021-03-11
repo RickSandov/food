@@ -2,15 +2,18 @@
 @import "abstracts/mixins";
 @import "abstracts/variables";
 
-@import "components/nav";
+
 @import "components/card";
 @import "components/snackbar";
 @import "components/modal";
+@import "components/sauces";
 
 @import "layout/food";
 @import "layout/resume";
 @import "layout/summary";
 @import "layout/form";
+@import "components/nav";
+
 
 @import "base/animations";
 @import "base/base";

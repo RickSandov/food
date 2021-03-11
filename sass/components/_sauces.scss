@@ -1,0 +1,65 @@
+.modal-sauce {
+    // display: flex; // Delete later
+
+    &__content {
+
+        @include respond(phone){
+            padding: 1rem;
+            // height: 600px;
+
+            & h3 {
+                margin: 1rem 0 0 1rem;
+            }
+        }
+
+        & .sauces {
+            align-self: center;
+            // height: 80%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2rem;
+
+            & label {
+                
+                color: $color-text;
+
+                & .sauce {
+                    margin: 1rem;
+                    padding: 1rem 1.5rem;
+                    @include shadow-light;
+                    border-radius: 50rem;
+                    font-size: 14px;
+                    color: $color-text;
+
+                    @include respond(from-tab-land) {
+                        font-size: 18px;
+                    }
+                }
+            }
+
+            & input[type=radio] {
+                display: none;
+
+                &:checked~label .sauce {
+                    background-color: $color-success;
+                    color: white;
+                }
+
+                &:not(:checked)+label .sauce {
+                    background-color: white;
+                    color: $color-bc;
+                }
+            }
+        }
+
+        & #modal-sauces-btn {
+            background-color: $color-bc;
+            width: fit-content;
+            padding: 1rem 2rem;
+            border-radius: .5rem;
+            align-self: flex-end;
+        }
+    }
+}

@@ -7,12 +7,11 @@
     <title>Food</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="css/style.min.css">
     <link rel="stylesheet" href="css/style.min.css">
 </head>
 
 <body>
-
-    <!-- <h1 data-aos-once="true" data-aos="appear">Animated Heading</h1> -->
 
     <nav class="nav">
         <img src="images/logo.png" alt="Maxi-Pollo">
@@ -30,6 +29,7 @@
     <!-- <p>**Costo de envío se añade al finalizar tu compra ($30)</p>cc -->
 
     <div id="snackbar"></div>
+    
 
     <div class="scrim"></div>
     <div class="summary" id="summary">
@@ -65,13 +65,16 @@
         </div>
     </div>
 
-    <!-- <div class="modal-sauce">
-        <div class="modal-sauce__content">
-            <Fieldset>
-                <input type="radio" name="sauce" value="chipotle">chipotle
-            </Fieldset>
+    <div class="modal modal-sauce" id="modal-sauces">
+        <div class="modal__content modal-sauce__content">
+            <h3>Elige tu salsa</h3>
+            <div class="sauces"></div>
+            <a href="#" id="modal-sauces-btn">Ok</a>
         </div>
-    </div> -->
+    </div>
+
+    <div class="back d-none"></div>
+    <div class="address d-none"></div>
 
     <div class="order-resume">
         <div class="order-resume__price">
