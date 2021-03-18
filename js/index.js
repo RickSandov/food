@@ -692,7 +692,8 @@ finishBtn.addEventListener("click", () => {
 
     <h3 class="form__title">Dirección y Datos de Envío.</h3>
 
-    <div class="error-display"></div>
+    <input type="text" class="form__field" name="clientname" placeholder="Su nombre" required>
+    
     <input type="text" class="form__field" name="street" placeholder="Calle" required>
 
     <input type="number" class="form__field" name="extnumber" placeholder="Numero Exterior" required>
